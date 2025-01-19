@@ -50,9 +50,10 @@ console.log(storage.getState().count); // Output: 0
    A. Provide the Store
    Set up a global store in your main Vue application file:
 
+// main.ts
+
 ```javascript
 <script setup>
-// main.ts
 import { createApp } from 'vue';
 import App from './App.vue';
 import { provideStore } from 'vultra';
@@ -72,8 +73,9 @@ app.mount('#app');
 Use the Store in Components
 Access the store in any Vue component using useStore:
 
-```vue
 <!-- App.vue -->
+
+```javascript
 <script setup>
 import { useStore } from "vultra";
 
@@ -128,14 +130,13 @@ store.updateState({ count: 10, message: "Updated!" });
 Framework-Agnostic Usage
 You can also use this library outside of Vue:
 
-```javascript
-
+```vue
 <script>
-import { createStorage } from 'vultra';
+import { createStorage } from "vultra";
 
 const storage = createStorage({ count: 0 });
 
-storage.setState('count', 10);
+storage.setState("count", 10);
 console.log(storage.getState().count); // Output: 10
 </script>
 ```
