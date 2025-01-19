@@ -1,2 +1,2 @@
-export {} from "./storage";
-export {} from "./vue";
+export { createStorage } from "./storage";
+export { provideStore, useStore } from "./vue";
