@@ -1,0 +1,59 @@
+{
+  "name": "vultra",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint --cache .",
+    "lint:fix": "eslint . --fix",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "typecheck": "tsc --noEmit",
+    "build": "babel src --out-dir lib --extensions .ts && tsc --emitDeclarationOnly",
+    "pub": "npm publish --access public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JSLogix/Vultra-js.git"
+  },
+  "author": "Samandar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JSLogix/Vultra-js/issues"
+  },
+  "homepage": "https://github.com/JSLogix/Vultra-js#readme",
+  "dependencies": {
+    "@vue/reactivity": "^3.5.13",
+    "typescript": "^5.7.3",
+    "vue": "^3.5.13"
+  },
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js"
+    }
+  },
+  "module": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "files": [
+    "lib",
+    "lib/types"
+  ],
+  "devDependencies": {
+    "@babel/cli": "^7.25.7",
+    "@babel/preset-env": "^7.25.8",
+    "@babel/preset-typescript": "^7.25.0",
+    "@types/node": "^20.8.3",
+    "eslint": "^8.51.0",
+    "eslint-plugin-sort-keys": "^2.3.5",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.11"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,vue,md}": [
+      "eslint --cache --fix"
+    ]
+  }
+}
