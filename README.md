@@ -45,3 +45,103 @@ console.log(storage.getState().count); // Output: 5
 storage.resetState();
 console.log(storage.getState().count); // Output: 0
 ```
+
+2. Vue Integration
+   A. Provide the Store
+   Set up a global store in your main Vue application file:
+
+```javascript
+<script setup>
+// main.ts
+import { createApp } from 'vue';
+import App from './App.vue';
+import { provideStore } from 'vultra';
+
+const app = createApp(App);
+
+// Provide the store with initial state
+provideStore({
+  count: 0,
+  message: 'Welcome to MyStorage!',
+});
+
+app.mount('#app');
+</script>
+```
+
+Use the Store in Components
+Access the store in any Vue component using useStore:
+
+```vue
+<!-- App.vue -->
+<script setup>
+import { useStore } from "vultra";
+
+const store = useStore();
+
+// Increment function
+const increment = () => {
+  store.setState("count", store.getState().count + 1);
+};
+</script>
+
+<template>
+  <div>
+    <p>Count: {{ store.getState().count }}</p>
+    <button @click="increment">Increment</button>
+  </div>
+</template>
+```
+
+API Reference
+createStorage(initialState: T)
+Creates a reactive storage object.
+
+initialState: The initial state object.
+Returns: An object with the following methods:
+getState(): Returns the current state as a readonly object.
+setState(key: keyof T, value: T[keyof T]): Updates a specific state property.
+updateState(newState: Partial<T>): Merges new state values into the current state.
+resetState(): Resets the state to its initial values.
+provideStore(initialState: T)
+Provides a store globally using Vue's provide API.
+
+initialState: The initial state object.
+useStore()
+Retrieves the provided store in any Vue component.
+
+Advanced Features
+Reset State
+Reset the state back to its initial values:
+
+```javascript
+store.resetState();
+```
+
+Update Multiple Properties
+Merge partial updates into the state:
+
+```javascript
+store.updateState({ count: 10, message: "Updated!" });
+```
+
+Framework-Agnostic Usage
+You can also use this library outside of Vue:
+
+```javascript
+
+<script>
+import { createStorage } from 'vultra';
+
+const storage = createStorage({ count: 0 });
+
+storage.setState('count', 10);
+console.log(storage.getState().count); // Output: 10
+</script>
+```
+
+Roadmap
+Add persistence with localStorage or sessionStorage.
+Plugin system for extending functionality.
+TypeScript enhancements for better type inference.
+Vue DevTools integration.
